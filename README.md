@@ -43,7 +43,7 @@ To run the project, execute `main.py` function.
 
 ```SELECT SUM(duration) FROM CALENDAR WHERE colorId=6 GROUP BY colorId;```
 
-### Note
+## Note
 colorId mapping for common colors:
 - `1`: Lavender
 - `2`: Sage
