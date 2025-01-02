@@ -2,3 +2,4 @@ credentials.json
 token.json
 *.db
 __pycache__/
+queries.txt
