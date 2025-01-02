@@ -27,6 +27,7 @@ def main():
     with open('queries.txt', 'r') as file:
         lines = file.read().splitlines()
 
+    query_comment = ''
     query = ''
     for line in lines:
         if line == '': continue
@@ -34,7 +35,7 @@ def main():
             query_comment = line.strip()
         elif line.endswith(';'):
             query += line.strip()
-            print(f"Query: {query_comment[2:].strip()}") if query_comment else None
+            print(f"Query: {query_comment[2:].strip()}") if query_comment!='' else None
             headers, results = db_manager.query_database(query)
             db_manager.format_results(headers, results)
             print()
