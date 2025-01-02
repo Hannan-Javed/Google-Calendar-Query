@@ -20,7 +20,8 @@ def filter_events(events):
         event['endTime'] = end_time
         event['duration'] = (end_time - start_time).total_seconds() / 60  # duration in minutes
     
-        event['date'] = start_time.date()
+        event['startDate'] = start_time.date()
+        event['endDate'] = end_time.date()
         event['startTime'] = start_time.time()
         event['endTime'] = end_time.time()
         event['day'] = WEEKDAY[dt.datetime.weekday(start_time)]
