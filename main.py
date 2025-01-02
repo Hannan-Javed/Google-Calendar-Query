@@ -37,6 +37,7 @@ def main():
             print(f"Query: {query_comment[2:].strip()}") if query_comment else None
             headers, results = db_manager.query_database(query)
             db_manager.format_results(headers, results)
+            print()
             query_comment = ''
             query = ''
         else:
