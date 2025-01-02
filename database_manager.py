@@ -12,17 +12,17 @@ class DatabaseManager:
     def create_database(self):
         self.con.execute("DROP TABLE IF EXISTS CALENDAR;")
         self.con.execute("""CREATE TABLE CALENDAR ( 
-            id TEXT PRIMARY KEY NOT NULL, 
+            id TEXT PRIMARY KEY, 
             summary TEXT,
             description TEXT,
-            colorId INTEGER,
+            colorId INTEGER NOT NULL,
             reminders JSON,
-            startDate DATE,
-            endDate DATE,
-            startTime TIME,
-            endTime TIME,
-            day TEXT,
-            duration FLOAT
+            startDate DATE NOT NULL,
+            endDate DATE NOT NULL,
+            startTime TIME NOT NULL,
+            endTime TIME NOT NULL,
+            day TEXT NOT NULL,
+            duration FLOAT NOT NULL
         );""")
         self.con.commit()
 
