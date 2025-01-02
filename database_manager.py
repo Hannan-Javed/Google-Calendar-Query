@@ -5,6 +5,10 @@ class DatabaseManager:
         self.db_name = db_name
         self.con = sqlite3.connect(self.db_name)
     
+    def database_exists(self):
+        cursor = self.con.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='CALENDAR';")
+        return cursor.fetchone() is not None
+    
     def create_database(self):
         self.con.execute("DROP TABLE IF EXISTS CALENDAR;")
         self.con.execute("""CREATE TABLE CALENDAR ( 
