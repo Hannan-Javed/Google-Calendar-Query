@@ -37,12 +37,11 @@ You can also refer to the guideline here for Google project setup:<br>
 https://www.youtube.com/watch?v=B2E82UPUnOY&t=463s
 
 ## Usage
-To run the project, execute `main.py` function.
-- You can specify your date range.
-- You can write your SQL query. An example query is shown below that returns the total duration of all events with colorId `6`:
+To run the project, first create a `queries.txt` file and write your queries on each line. An example query which finds total duration of all events with `colorId` 6 is:
 
 ```SELECT SUM(duration) FROM CALENDAR WHERE colorId=6 GROUP BY colorId;```
 
+Then run `main.py`. You can specify your date range.
 ## Note
 colorId mapping for common colors:
 - `1`: Lavender
