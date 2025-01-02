@@ -25,7 +25,7 @@ def main():
         
         db_manager.build_database(all_events)
     
-    with open('queries.txt', 'r') as file:
+    with open('queries.sql', 'r') as file:
         lines = file.read().splitlines()
 
     query_comment = ''

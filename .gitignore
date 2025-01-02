@@ -2,5 +2,5 @@ credentials.json
 token.json
 *.db
 __pycache__/
-queries.txt
-ignore_queries.txt
+queries.sql
+ignore_queries.sql

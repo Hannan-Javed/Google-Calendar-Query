@@ -40,7 +40,7 @@ You can also refer to the guideline here for Google project setup:<br>
 https://www.youtube.com/watch?v=B2E82UPUnOY&t=463s
 
 ## Usage
-To run the project, first create a `queries.txt` file and write your queries on each line. The format is shown with an example:
+To run the project, first create a `queries.sql` file that contains your queries. The format is shown with an example:
 ```
 -- comments for what the query does (optional) e.g. displays sum of events for each day with colorId of 6
 SELECT startDate, SUM(duration) as sum
