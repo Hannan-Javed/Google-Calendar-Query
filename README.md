@@ -10,7 +10,7 @@ This project allows you to execute SQL queries on Google Calendar events. Since 
 - **Config**: Stores configuration settings.
 
 ## Database Schema
-The database schema is as follows:
+Table name is CALENDAR. Database schema is as follows:
 - `id`: id of event. unique for each event
 - `summary`: event title
 - `description`: event description
