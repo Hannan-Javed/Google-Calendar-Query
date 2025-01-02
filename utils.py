@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 from config import TIME_ZONE
+WEEKDAY = {0: 'MON', 1: 'TUE', 2: 'WED', 3: 'THU', 4: 'FRI', 5: 'SAT', 6: 'SUN'}
 
 def filter_events(events):
     filtered_events = []
@@ -19,6 +20,11 @@ def filter_events(events):
         event['endTime'] = end_time
         event['duration'] = (end_time - start_time).total_seconds() / 60  # duration in minutes
     
+        event['date'] = start_time.date()
+        event['startTime'] = start_time.time()
+        event['endTime'] = end_time.time()
+        event['day'] = WEEKDAY[dt.datetime.weekday(start_time)]
+
         event['reminders'] = json.dumps(event['reminders'])
         del event['start']
         del event['end']

@@ -17,16 +17,18 @@ class DatabaseManager:
             description TEXT,
             colorId INTEGER,
             reminders JSON,
-            startTime TIMESTAMP,
-            endTime TIMESTAMP,
+            date DATE,
+            startTime TIME,
+            endTime TIME,
+            day TEXT,
             duration FLOAT
         );""")
         self.con.commit()
 
     def build_database(self, data):
         insert_query = """INSERT INTO CALENDAR 
-            (id, summary, description, colorId, reminders, startTime, endTime, duration) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?);"""
+            (id, summary, description, colorId, reminders, date, startTime, endTime, day, duration) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"""
         self.con.executemany(insert_query, [
             (
                 event.get('id'),
@@ -34,8 +36,10 @@ class DatabaseManager:
                 event.get('description'),
                 event.get('colorId'),
                 event.get('reminders'),
-                event.get('startTime'),
-                event.get('endTime'),
+                event.get('date').strftime('%d-%m-%Y'),
+                event.get('startTime').strftime('%H:%M:%S'),
+                event.get('endTime').strftime('%H:%M:%S'),
+                event.get('day'),
                 event.get('duration')
             ) for event in data
         ])
