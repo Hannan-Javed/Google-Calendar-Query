@@ -16,7 +16,8 @@ The database schema is as follows:
 - `description`: event description
 - `colorId`: color id of event. Unique for each color (for common colors, see note below)
 - `reminders`: reminder notifications in json format
-- `date`: date of event in the format `DD-MM-YYYY`
+- `startDate`: start date of event in the format `DD-MM-YYYY`
+- `endDate`: end date of event in the format `DD-MM-YYYY`
 - `startTime`: startTime of event
 - `endTime`: endTime of event
 - `day`: weekday of the event e.g. MON for Monday
