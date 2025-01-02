@@ -52,5 +52,12 @@ class DatabaseManager:
         results = cursor.fetchall()
         return headers, results
     
+    def format_results(self, headers, results):
+        col_widths = [max(len(str(cell)) for cell in col) for col in zip(*([headers] + results))]
+        print(" | ".join([f"{header:<{col_widths[i]}}" for i, header in enumerate(headers)]))
+        print("-" * (sum(col_widths) + 3 * (len(headers) - 1)))
+        for row in results:
+            print(" | ".join([f"{str(cell):<{col_widths[i]}}" for i, cell in enumerate(row)]))
+    
     def close_connection(self):
         self.con.close()
