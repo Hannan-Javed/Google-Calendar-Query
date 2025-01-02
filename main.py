@@ -25,11 +25,22 @@ def main():
             db_manager.build_database(all_events)
     
     with open('queries.txt', 'r') as file:
-        queries = file.read().splitlines()
+        lines = file.read().splitlines()
 
-    for query in queries:
-        headers, results = db_manager.query_database(query)
-        db_manager.format_results(headers, results)
+    query = ''
+    for line in lines:
+        if line == '': continue
+        elif line.startswith('--'):
+            query_comment = line.strip()
+        elif line.endswith(';'):
+            query += line.strip()
+            print(f"Query: {query_comment[2:].strip()}") if query_comment else None
+            headers, results = db_manager.query_database(query)
+            db_manager.format_results(headers, results)
+            query_comment = ''
+            query = ''
+        else:
+            query += line.strip() + ' '
     
 if __name__ == '__main__':
     main()

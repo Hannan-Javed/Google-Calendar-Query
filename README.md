@@ -40,13 +40,18 @@ You can also refer to the guideline here for Google project setup:<br>
 https://www.youtube.com/watch?v=B2E82UPUnOY&t=463s
 
 ## Usage
-To run the project, first create a `queries.txt` file and write your queries on each line. An example query which finds total duration of all events with `colorId` 6 on each startDate is:
-
-```SELECT startDate, SUM(duration) FROM CALENDAR WHERE colorId = 6 GROUP BY startDate;```
-
+To run the project, first create a `queries.txt` file and write your queries on each line. The format is shown with an example:
+```
+-- comments for what the query does (optional) e.g. displays sum of events for each day with colorId of 6
+SELECT startDate, SUM(duration) as sum
+FROM CALENDAR 
+WHERE colorId = 6 
+GROUP BY startDate;
+```
+The query can span over multiple lines but <b>must</b> end with `;`
 Then run `main.py`. You can specify your date range.
 Output for the example query is:
-| startDate   | SUM(duration) |
+| startDate   | sum           |
 |-------------|---------------|
 | 01-12-2024  | 90.0          |
 | 07-12-2024  | 120.0         |
