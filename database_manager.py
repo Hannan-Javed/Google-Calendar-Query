@@ -49,8 +49,8 @@ class DatabaseManager:
     def query_database(self, query):
         cursor = self.con.execute(query)
         headers = [description[0] for description in cursor.description]
-        results = [{header: row[i] for i, header in enumerate(headers)} for row in cursor]
-        return results
+        results = cursor.fetchall()
+        return headers, results
     
     def close_connection(self):
         self.con.close()

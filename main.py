@@ -28,8 +28,9 @@ def main():
     
     # sample query
     query = "SELECT SUM(duration) FROM CALENDAR WHERE colorId=6 GROUP BY colorId;"
-    result = db_manager.query_database(query)
-    for row in result:
+    headers, results = db_manager.query_database(query)
+    print(headers)
+    for row in results:
         print(row)
     
 if __name__ == '__main__':
