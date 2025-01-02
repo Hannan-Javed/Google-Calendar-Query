@@ -3,11 +3,11 @@ import sqlite3
 class DatabaseManager:
     def __init__(self, db_name='my-db.db'):
         self.db_name = db_name
+        self.con = sqlite3.connect(self.db_name)
     
     def create_database(self):
-        con = sqlite3.connect(self.db_name)
-        con.execute("DROP TABLE IF EXISTS CALENDAR;")
-        con.execute("""CREATE TABLE CALENDAR ( 
+        self.con.execute("DROP TABLE IF EXISTS CALENDAR;")
+        self.con.execute("""CREATE TABLE CALENDAR ( 
             id TEXT PRIMARY KEY NOT NULL, 
             summary TEXT,
             description TEXT,
@@ -17,13 +17,14 @@ class DatabaseManager:
             endTime TIMESTAMP,
             duration FLOAT
         );""")
-        con.close()
-        
+        self.con.commit()
+
     def build_database(self, data):
-        con = sqlite3.connect(self.db_name)
-        for event in data:
-            insert_query = "INSERT INTO CALENDAR (id, summary, description, colorId, reminders, startTime, endTime, duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"
-            con.execute(insert_query, (
+        insert_query = """INSERT INTO CALENDAR 
+            (id, summary, description, colorId, reminders, startTime, endTime, duration) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?);"""
+        self.con.executemany(insert_query, [
+            (
                 event.get('id'),
                 event.get('summary'),
                 event.get('description'),
@@ -32,20 +33,19 @@ class DatabaseManager:
                 event.get('startTime'),
                 event.get('endTime'),
                 event.get('duration')
-            ))
-        con.commit()
-        con.close()
-
+            ) for event in data
+        ])
+        self.con.commit()
+    
     def print_database(self):
-        con = sqlite3.connect(self.db_name)
-        cursor = con.execute("SELECT * FROM CALENDAR;")
+        cursor = self.con.execute("SELECT * FROM CALENDAR;")
         for row in cursor:
             print(row)
-        con.close()
 
     def query_database(self, query):
-        con = sqlite3.connect(self.db_name)
-        cursor = con.execute(query)
+        cursor = self.con.execute(query)
         result = cursor.fetchall()
-        con.close()
         return result
+    
+    def close_connection(self):
+        self.con.close()
