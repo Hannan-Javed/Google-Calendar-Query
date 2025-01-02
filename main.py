@@ -26,10 +26,12 @@ def main():
             
             db_manager.build_database(all_events)
     
-    # sample query
-    query = "SELECT SUM(duration) FROM CALENDAR WHERE colorId=6 GROUP BY colorId;"
-    headers, results = db_manager.query_database(query)
-    db_manager.format_results(headers, results)
+    with open('queries.txt', 'r') as file:
+        queries = file.read().splitlines()
+
+    for query in queries:
+        headers, results = db_manager.query_database(query)
+        db_manager.format_results(headers, results)
     
 if __name__ == '__main__':
     main()
