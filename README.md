@@ -60,14 +60,14 @@ Output for the example query is:
 | 21-12-2024  | 30.0          |
 ## Note
 colorId mapping for common colors:
-- `1`: Lavender
-- `2`: Sage
-- `3`: Grape
-- `4`: Falmingo
-- `5`: Banana
-- `6`: Tangerine
-- `7`: Peacock
-- `8`: Graphite
-- `9`: Blueberry
-- `10`: Basil
-- `11`: Tomato
+- `1`: <span style = "color: rgb(130,139,194)">Lavender</span>
+- `2`: <span style = "color: rgb(85,176,128)">Sage</span>
+- `3`: <span style = "color: rgb(176,90,186)">Grape</span>
+- `4`: <span style = "color: rgb(214,131,122)">Falmingo</span>
+- `5`: <span style = "color: rgb(231,186,81)">Banana</span>
+- `6`: <span style = "color: rgb(227,104,62)">Tangerine</span>
+- `7`: <span style = "color: rgb(75,153,210)">Peacock</span>
+- `8`: <span style = "color: rgb(124,124,124)">Graphite</span>
+- `9`: <span style = "color: rgb(110,114,195)">Blueberry</span>
+- `10`: <span style = "color: rgb(72,145,96)">Basil</span>
+- `11`: <span style = "color: rgb(218,82,52)">Tomato</span>
