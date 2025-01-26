@@ -23,7 +23,7 @@ Table name is CALENDAR. Database schema is as follows:
 | startTime   | TIME       | start time of event |
 | endTime     | TIME       | end time of event |
 | day         | TEXT       | weekday of the event e.g. MON for Monday |
-| duration    | FLOAT       | duration of event in minutes (float) |
+| duration    | FLOAT       | duration of event in minutes |
 
 ## Installation
 1. Clone the repository
