@@ -11,17 +11,19 @@ This project allows you to execute SQL queries on Google Calendar events. Since 
 
 ## Database Schema
 Table name is CALENDAR. Database schema is as follows:
-- `id`: id of event. unique for each event
-- `summary`: event title
-- `description`: event description
-- `colorId`: color id of event. Unique for each color (for common colors, see note below)
-- `reminders`: reminder notifications in json format
-- `startDate`: start date of event in the format `DD-MM-YYYY`
-- `endDate`: end date of event in the format `DD-MM-YYYY`
-- `startTime`: startTime of event
-- `endTime`: endTime of event
-- `day`: weekday of the event e.g. MON for Monday
-- `duration`: duration of event in minutes (float)
+| Column Name | Data Type | Description |
+|-------------|------------|-------------|
+| id          | TEXT       | id of event. unique for each event |
+| summary     | TEXT       | event title |
+| description | TEXT       | event description |
+| colorId     | INTEGER    | color id of event. Unique for each color (for commonly used colors, see note at the end) |
+| reminders   | JSON       | reminder notifications in json format |
+| startDate   | DATE       | start date of event in the format `DD-MM-YYYY` |
+| endDate     | DATE       | end date of event in the format `DD-MM-YYYY` |
+| startTime   | TIME       | start time of event |
+| endTime     | TIME       | end time of event |
+| day         | TEXT       | weekday of the event e.g. MON for Monday |
+| duration    | FLOAT       | duration of event in minutes (float) |
 
 ## Installation
 1. Clone the repository
