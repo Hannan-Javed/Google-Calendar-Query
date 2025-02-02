@@ -38,7 +38,6 @@ class DatabaseManager:
         calendar_last_date = all_events[-1]['startDate'].strftime('%d-%m-%Y')
 
         if result is None or db_events is None or calendar_start_date != db_start_date or calendar_last_date != db_last_date:
-            print("AS")
             self.create_table()
             self.build_database(all_events)
 
