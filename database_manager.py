@@ -1,15 +1,48 @@
-import sqlite3
+import sqlite3, datetime as dt,sys
+from config import TIME_ZONE, START_DATE, END_DATE
+from google_calendar_service import GoogleCalendarService
+from utils import filter_events
 
 class DatabaseManager:
     def __init__(self, db_name='my-db.db'):
         self.db_name = db_name
         self.con = sqlite3.connect(self.db_name)
-    
-    def database_exists(self):
-        cursor = self.con.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='CALENDAR';")
-        return cursor.fetchone() is not None
+        self.create_database()
     
     def create_database(self):
+
+        cursor = self.con.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='CALENDAR';")
+        result = cursor.fetchone()
+
+        if result is not None:
+            db_events = self.con.execute("SELECT startDate FROM CALENDAR;").fetchall()
+            if db_events is not None:
+                db_start_date = db_events[0][0]
+                db_last_date = db_events[-1][0] 
+
+        calendar_service = GoogleCalendarService()
+
+        start_date = dt.datetime.strptime(START_DATE, "%d-%m-%Y")
+        start_date = TIME_ZONE.localize(start_date).isoformat()
+        end_date = dt.datetime.strptime(END_DATE, "%d-%m-%Y")
+        end_date = TIME_ZONE.localize(end_date).isoformat()
+
+        all_events = calendar_service.fetch_events(start_date, end_date)
+        all_events = filter_events(all_events)
+
+        if not all_events:
+            print("No events found from start date till end date")
+            sys.exit()
+
+        calendar_start_date = all_events[0]['startDate'].strftime('%d-%m-%Y')
+        calendar_last_date = all_events[-1]['startDate'].strftime('%d-%m-%Y')
+
+        if result is None or db_events is None or calendar_start_date != db_start_date or calendar_last_date != db_last_date:
+            print("AS")
+            self.create_table()
+            self.build_database(all_events)
+
+    def create_table(self):
         self.con.execute("DROP TABLE IF EXISTS CALENDAR;")
         self.con.execute("""CREATE TABLE CALENDAR ( 
             id TEXT PRIMARY KEY, 
