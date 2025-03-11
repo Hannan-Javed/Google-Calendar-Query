@@ -69,10 +69,10 @@ class DatabaseManager:
                 event.get('description'),
                 event.get('colorId'),
                 event.get('reminders'),
-                event.get('startDate').strftime('%d-%m-%Y'),
-                event.get('endDate').strftime('%d-%m-%Y'),
-                event.get('startTime').strftime('%H:%M:%S'),
-                event.get('endTime').strftime('%H:%M:%S'),
+                event.get('startDate'),
+                event.get('endDate'),
+                event.get('startTime'),
+                event.get('endTime'),
                 event.get('day'),
                 event.get('duration')
             ) for event in data

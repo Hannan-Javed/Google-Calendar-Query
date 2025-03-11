@@ -20,10 +20,10 @@ def filter_events(events):
         event['endTime'] = end_time
         event['duration'] = (end_time - start_time).total_seconds() / 60  # duration in minutes
     
-        event['startDate'] = start_time.date()
-        event['endDate'] = end_time.date()
-        event['startTime'] = start_time.time()
-        event['endTime'] = end_time.time()
+        event['startDate'] = start_time.date().strftime('%d-%m-%Y')
+        event['endDate'] = end_time.date().strftime('%d-%m-%Y')
+        event['startTime'] = start_time.time().strftime('%H:%M:%S')
+        event['endTime'] = end_time.time().strftime('%H:%M:%S')
         event['day'] = WEEKDAY[dt.datetime.weekday(start_time)]
 
         event['reminders'] = json.dumps(event['reminders'])
