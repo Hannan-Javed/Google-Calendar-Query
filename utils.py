@@ -38,5 +38,7 @@ def filter_events(events):
             event['description'] = None
         if not 'colorId' in event:
             event['colorId'] = 1
+        else:
+            event['colorId'] = int(event['colorId'])
         filtered_events.append(event)
     return filtered_events
